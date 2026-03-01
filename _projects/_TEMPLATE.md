@@ -1,28 +1,41 @@
 ---
 title: Replace With Project Title
-semester: 2026-spring
-team: Team Name
+semester: 2026 Spring
+team:
+  - Student One
+  - Student Two
 tags:
-  - Tag one
-  - Tag two
-  - Tag three
+  - Tag One
+  - Tag Two
 repo_url: https://github.com/your-org/your-project
-demo_url: https://example.com/your-project
-poster_image: /assets/images/posters/your-project-poster.png
+demo_url:
+poster_image: /assets/images/projects/2026-spring/your-project.svg
 short_abstract: Write a 1-2 sentence summary that explains the problem, audience, and what the project delivers.
 published: false
 ---
-## Overview
+## Problem
 
-Summarize the project in a short paragraph. Treat this as the project detail page content.
+Describe the problem or question your project addresses.
 
-## Key features
+## Data
 
-- Highlight one meaningful capability.
-- Highlight one design or technical decision.
-- Highlight one outcome, test result, or next step.
+Describe the dataset, sources, inputs, or materials used in the project.
 
-## Credits
+## Method
 
-List team members, advisors, partner organizations, or course context if needed.
+Explain the workflow, model, design approach, or implementation strategy.
 
+## Results
+
+Summarize the main outcomes, evaluation findings, or what worked best.
+
+## How to run
+
+1. Add setup instructions.
+2. Explain how to launch the project locally.
+3. List any required dependencies or accounts.
+
+## Links
+
+- Repository: https://github.com/your-org/your-project
+- Demo: Add a URL here or write `Coming soon`

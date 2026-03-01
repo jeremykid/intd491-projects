@@ -1,31 +1,6 @@
 # INTD 491 Project Showcase
 
-A Jekyll + GitHub Pages scaffold for publishing student projects as semester archives and individual project detail pages.
-
-## Stack
-
-- Jekyll 4
-- Minimal Mistakes theme
-- GitHub Pages deployment through GitHub Actions
-- `_projects/` collection for authoring
-
-## Repo layout
-
-```text
-.
-├── .github/workflows/pages.yml
-├── 2025-fall/index.md
-├── 2026-spring/index.md
-├── _config.yml
-├── _data/navigation.yml
-├── _includes/
-├── _layouts/
-├── _projects/
-├── assets/
-├── CONTRIBUTING.md
-├── Gemfile
-└── index.md
-```
+A Minimal Mistakes-based GitHub Pages site for publishing student projects as a semester-grouped showcase with individual project detail pages.
 
 ## Local development
 
@@ -35,7 +10,7 @@ Install dependencies:
 bundle install
 ```
 
-Run the site locally:
+Serve the site locally:
 
 ```bash
 bundle exec jekyll serve
@@ -43,22 +18,27 @@ bundle exec jekyll serve
 
 Then open `http://127.0.0.1:4000/`.
 
-Use a modern Ruby 3.x install for local work. The GitHub Pages workflow builds with Ruby `3.3`.
+## Where content lives
 
-## How the content model works
+- `_projects/` contains one markdown file per student project.
+- `projects.md` is the canonical project index at `/projects/`.
+- `2025-fall/index.md` and `2026-spring/index.md` are semester archive pages.
+- `assets/images/projects/<semester-slug>/` stores teaser or poster images used on cards and detail pages.
 
-- Every project lives in `_projects/` as one markdown file.
-- Each project must include these front matter fields:
-  - `title`
-  - `semester`
-  - `team`
-  - `tags`
-  - `repo_url`
-  - `demo_url`
-  - `poster_image`
-  - `short_abstract`
-- Each semester archive is a normal page folder such as `2026-spring/index.md`.
-- The home page reads semester archive pages and automatically renders cards for matching projects.
+## Project front matter
+
+Each project file must define:
+
+- `title`
+- `semester`
+- `team` as a YAML list
+- `tags`
+- `repo_url`
+- `demo_url`
+- `poster_image`
+- `short_abstract`
+
+Use `_projects/_TEMPLATE.md` as the starting point.
 
 ## Add a new semester
 
@@ -70,29 +50,24 @@ Use a modern Ruby 3.x install for local work. The GitHub Pages workflow builds w
    - `semester_order`
    - `description`
    - `permalink`
-4. Add projects under `_projects/` using the exact same `semester` slug.
+4. Add projects under `_projects/` using the matching display value in `semester`, for example `2026 Fall`.
 
 ## Add a new project
 
 1. Copy `_projects/_TEMPLATE.md` to a new file.
-2. Add your poster image under `assets/images/posters/`.
+2. Add your image under `assets/images/projects/<semester-slug>/`.
 3. Fill in the front matter and body content.
-4. Publish it by removing `published: false` or changing it to `published: true`.
+4. Remove `published: false` or change it to `published: true`.
+5. Confirm it appears on `/projects/` and on the matching semester archive page.
 
 See `CONTRIBUTING.md` for the student-friendly version.
 
-## GitHub Pages deployment
+## Semester display behavior
 
-The workflow in `.github/workflows/pages.yml`:
+- `/projects/` groups projects by the `semester` field.
+- Sections are ordered by the archive pages' `semester_order` values, newest first.
+- Semester archive pages stay available at stable URLs such as `/2026-spring/`.
 
-- installs the Ruby/Jekyll dependencies from `Gemfile`,
-- detects whether the repository is a user site (`username.github.io`) or a project site,
-- injects the correct `url` and `baseurl` during the build,
-- uploads `_site/` and deploys it to GitHub Pages.
+## Baseurl note
 
-This means the same repo can be pushed directly as either:
-
-- `https://username.github.io/`
-- `https://username.github.io/repository-name/`
-
-without editing `_config.yml` by hand for deployment.
+This repository is configured as a GitHub Pages project site. Keep the `_config.yml` `url` and `baseurl` values intact so that all `relative_url` links and images resolve correctly at `https://jeremykid.github.io/intd491-projects/`.

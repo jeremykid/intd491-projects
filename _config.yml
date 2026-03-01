@@ -1,7 +1,7 @@
 title: INTD 491 Project Showcase
 description: Student projects for INTD 491, organized by semester and published on GitHub Pages.
-url: ""
-baseurl: ""
+url: "https://jeremykid.github.io"
+baseurl: "/intd491-projects"
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: sunrise
 locale: en-US
@@ -42,9 +42,7 @@ footer:
   links:
     - label: GitHub Pages
       icon: fab fa-github
-      url: https://jeremykid.github.io
-      baseurl: "/intd491-projects"
+      url: https://pages.github.com/
 
 sass:
   style: compressed
-

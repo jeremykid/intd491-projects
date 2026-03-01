@@ -46,6 +46,13 @@ body {
   max-width: 48rem;
 }
 
+.showcase-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
 .semester-section {
   margin: 0 0 3rem;
 }
@@ -243,5 +250,10 @@ body {
 
   .showcase-lead {
     font-size: 1.02rem;
+  }
+
+  .showcase-actions .btn {
+    width: 100%;
+    text-align: center;
   }
 }

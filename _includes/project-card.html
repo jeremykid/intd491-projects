@@ -1,11 +1,19 @@
 {% assign project = include.project %}
 {% capture semester_label %}{% include semester-label.html semester=project.semester pages=site.html_pages %}{% endcapture %}
+{% assign team_value = project.team %}
+{% if team_value.first %}
+  {% assign team_text = team_value | join: ", " %}
+{% else %}
+  {% assign team_text = team_value %}
+{% endif %}
 <article class="project-card">
   <a class="project-card__poster" href="{{ project.url | relative_url }}">
     <img src="{{ project.poster_image | relative_url }}" alt="Poster for {{ project.title }}">
   </a>
   <div class="project-card__body">
-    <p class="project-card__kicker">{{ semester_label | strip }} | {{ project.team }}</p>
+    <p class="project-card__kicker">
+      {{ semester_label | strip }}{% if team_text and team_text != blank %} | {{ team_text }}{% endif %}
+    </p>
     <h3 class="project-card__title">
       <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
     </h3>
@@ -19,10 +27,10 @@
     {% endif %}
     <div class="project-card__links">
       <a class="btn btn--primary btn--small" href="{{ project.url | relative_url }}">Details</a>
-      {% if project.demo_url %}
+      {% if project.demo_url and project.demo_url != blank %}
         <a class="btn btn--inverse btn--small" href="{{ project.demo_url }}" target="_blank" rel="noopener">Demo</a>
       {% endif %}
-      {% if project.repo_url %}
+      {% if project.repo_url and project.repo_url != blank %}
         <a class="btn btn--success btn--small" href="{{ project.repo_url }}" target="_blank" rel="noopener">Repo</a>
       {% endif %}
     </div>

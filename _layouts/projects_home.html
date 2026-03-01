@@ -3,14 +3,19 @@ layout: single
 classes: wide
 ---
 <section class="showcase-intro">
-  <p class="semester-kicker">Course portfolio</p>
+  <p class="semester-kicker">{{ page.kicker | default: "Student projects" }}</p>
   <p class="showcase-lead">{{ page.lead | default: site.description }}</p>
   {{ content }}
 </section>
 
+{% assign grouped_projects = site.projects | group_by: "semester" %}
 {% assign semester_pages = site.html_pages | where_exp: "item", "item.semester != nil" | sort: "semester_order" | reverse %}
 {% for semester_page in semester_pages %}
-  {% assign semester_projects = site.projects | where: "semester", semester_page.semester | sort: "title" %}
+  {% assign semester_projects = "" | split: "" %}
+  {% assign semester_group = grouped_projects | where: "name", semester_page.semester | first %}
+  {% if semester_group %}
+    {% assign semester_projects = semester_group.items | sort: "title" %}
+  {% endif %}
   <section class="semester-section">
     <div class="semester-section__header">
       <div>
@@ -35,4 +40,3 @@ classes: wide
     {% endif %}
   </section>
 {% endfor %}
-

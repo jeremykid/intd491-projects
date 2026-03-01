@@ -4,6 +4,12 @@ classes: wide
 ---
 {% assign semester_page = site.html_pages | where: "semester", page.semester | first %}
 {% capture semester_label %}{% include semester-label.html semester=page.semester pages=site.html_pages %}{% endcapture %}
+{% assign team_value = page.team %}
+{% if team_value.first %}
+  {% assign team_text = team_value | join: ", " %}
+{% else %}
+  {% assign team_text = team_value %}
+{% endif %}
 
 {% if page.short_abstract %}
   <p class="showcase-lead">{{ page.short_abstract }}</p>
@@ -33,7 +39,7 @@ classes: wide
         </dd>
 
         <dt>Team</dt>
-        <dd>{{ page.team }}</dd>
+        <dd>{{ team_text }}</dd>
 
         {% if page.tags %}
           <dt>Tags</dt>
@@ -48,14 +54,13 @@ classes: wide
       </dl>
 
       <div class="project-card__links project-card__links--stacked">
-        {% if page.demo_url %}
+        {% if page.demo_url and page.demo_url != blank %}
           <a class="btn btn--primary btn--block" href="{{ page.demo_url }}" target="_blank" rel="noopener">Open demo</a>
         {% endif %}
-        {% if page.repo_url %}
+        {% if page.repo_url and page.repo_url != blank %}
           <a class="btn btn--inverse btn--block" href="{{ page.repo_url }}" target="_blank" rel="noopener">Open repository</a>
         {% endif %}
       </div>
     </section>
   </aside>
 </div>
-
