@@ -42,7 +42,8 @@ footer:
   links:
     - label: GitHub Pages
       icon: fab fa-github
-      url: https://pages.github.com/
+      url: https://jeremykid.github.io
+      baseurl: "/intd491-projects"
 
 sass:
   style: compressed
