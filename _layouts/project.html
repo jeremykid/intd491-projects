@@ -1,0 +1,61 @@
+---
+layout: single
+classes: wide
+---
+{% assign semester_page = site.html_pages | where: "semester", page.semester | first %}
+{% capture semester_label %}{% include semester-label.html semester=page.semester pages=site.html_pages %}{% endcapture %}
+
+{% if page.short_abstract %}
+  <p class="showcase-lead">{{ page.short_abstract }}</p>
+{% endif %}
+
+<div class="project-detail-grid">
+  <div class="project-detail-main">
+    {% if page.poster_image %}
+      <figure class="project-detail-poster">
+        <img src="{{ page.poster_image | relative_url }}" alt="Poster for {{ page.title }}">
+      </figure>
+    {% endif %}
+    {{ content }}
+  </div>
+
+  <aside class="project-detail-aside">
+    <section class="project-detail-panel">
+      <p class="semester-kicker">Project snapshot</p>
+      <dl class="project-meta-list">
+        <dt>Semester</dt>
+        <dd>
+          {% if semester_page %}
+            <a href="{{ semester_page.url | relative_url }}">{{ semester_label | strip }}</a>
+          {% else %}
+            {{ semester_label | strip }}
+          {% endif %}
+        </dd>
+
+        <dt>Team</dt>
+        <dd>{{ page.team }}</dd>
+
+        {% if page.tags %}
+          <dt>Tags</dt>
+          <dd>
+            <ul class="tag-list">
+              {% for tag in page.tags %}
+                <li>{{ tag }}</li>
+              {% endfor %}
+            </ul>
+          </dd>
+        {% endif %}
+      </dl>
+
+      <div class="project-card__links project-card__links--stacked">
+        {% if page.demo_url %}
+          <a class="btn btn--primary btn--block" href="{{ page.demo_url }}" target="_blank" rel="noopener">Open demo</a>
+        {% endif %}
+        {% if page.repo_url %}
+          <a class="btn btn--inverse btn--block" href="{{ page.repo_url }}" target="_blank" rel="noopener">Open repository</a>
+        {% endif %}
+      </div>
+    </section>
+  </aside>
+</div>
+

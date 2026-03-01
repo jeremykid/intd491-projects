@@ -1,0 +1,30 @@
+{% assign project = include.project %}
+{% capture semester_label %}{% include semester-label.html semester=project.semester pages=site.html_pages %}{% endcapture %}
+<article class="project-card">
+  <a class="project-card__poster" href="{{ project.url | relative_url }}">
+    <img src="{{ project.poster_image | relative_url }}" alt="Poster for {{ project.title }}">
+  </a>
+  <div class="project-card__body">
+    <p class="project-card__kicker">{{ semester_label | strip }} | {{ project.team }}</p>
+    <h3 class="project-card__title">
+      <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+    </h3>
+    <p class="project-card__abstract">{{ project.short_abstract | strip_html | truncate: 150 }}</p>
+    {% if project.tags %}
+      <ul class="tag-list">
+        {% for tag in project.tags %}
+          <li>{{ tag }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <div class="project-card__links">
+      <a class="btn btn--primary btn--small" href="{{ project.url | relative_url }}">Details</a>
+      {% if project.demo_url %}
+        <a class="btn btn--inverse btn--small" href="{{ project.demo_url }}" target="_blank" rel="noopener">Demo</a>
+      {% endif %}
+      {% if project.repo_url %}
+        <a class="btn btn--success btn--small" href="{{ project.repo_url }}" target="_blank" rel="noopener">Repo</a>
+      {% endif %}
+    </div>
+  </div>
+</article>
