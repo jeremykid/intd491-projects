@@ -26,12 +26,12 @@
       </ul>
     {% endif %}
     <div class="project-card__links">
-      <a class="btn btn--primary btn--small" href="{{ project.url | relative_url }}">Details</a>
+      <a class="slate-button" href="{{ project.url | relative_url }}">Details</a>
       {% if project.demo_url and project.demo_url != blank %}
-        <a class="btn btn--inverse btn--small" href="{{ project.demo_url }}" target="_blank" rel="noopener">Demo</a>
+        <a class="slate-button slate-button--secondary" href="{{ project.demo_url }}" target="_blank" rel="noopener">Demo</a>
       {% endif %}
       {% if project.repo_url and project.repo_url != blank %}
-        <a class="btn btn--success btn--small" href="{{ project.repo_url }}" target="_blank" rel="noopener">Repo</a>
+        <a class="slate-button slate-button--secondary" href="{{ project.repo_url }}" target="_blank" rel="noopener">Repo</a>
       {% endif %}
     </div>
   </div>

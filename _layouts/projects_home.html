@@ -1,10 +1,10 @@
 ---
-layout: single
-classes: wide
+layout: default
 ---
-<section class="showcase-intro">
-  <p class="semester-kicker">{{ page.kicker | default: "Student projects" }}</p>
-  <p class="showcase-lead">{{ page.lead | default: site.description }}</p>
+<section class="page-intro">
+  <p class="page-kicker">{{ page.kicker | default: "Student projects" }}</p>
+  <h1>{{ page.title }}</h1>
+  <p class="page-lead">{{ page.lead | default: site.description }}</p>
   {{ content }}
 </section>
 
@@ -19,7 +19,7 @@ classes: wide
   <section class="semester-section">
     <div class="semester-section__header">
       <div>
-        <p class="semester-kicker">Semester archive</p>
+        <p class="page-kicker">Semester archive</p>
         <h2 class="semester-section__title">
           <a href="{{ semester_page.url | relative_url }}">{{ semester_page.title }}</a>
         </h2>

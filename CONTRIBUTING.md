@@ -59,6 +59,8 @@ Then verify:
 - the poster image loads,
 - the repo/demo links work.
 
+The `/projects/` page is the main showcase. Semester archive pages remain available as supporting browse pages.
+
 ## Pull request checklist
 
 Before opening a PR, confirm that:

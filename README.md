@@ -1,6 +1,6 @@
 # INTD 491 Project Showcase
 
-A Minimal Mistakes-based GitHub Pages site for publishing student projects as a semester-grouped showcase with individual project detail pages.
+A Slate-themed GitHub Pages site for publishing student projects as a semester-grouped showcase with individual project detail pages.
 
 ## Local development
 
@@ -64,7 +64,7 @@ See `CONTRIBUTING.md` for the student-friendly version.
 
 ## Semester display behavior
 
-- `/projects/` groups projects by the `semester` field.
+- `/projects/` groups projects by the `semester` field and shows the showcase in a fixed two-column grid on desktop.
 - Sections are ordered by the archive pages' `semester_order` values, newest first.
 - Semester archive pages stay available at stable URLs such as `/2026-spring/`.
 

@@ -1,7 +1,7 @@
 ---
 title: Contributing
 permalink: /contributing/
-layout: single
+layout: default
 ---
 # Contributing a Project
 

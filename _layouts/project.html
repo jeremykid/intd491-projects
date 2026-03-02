@@ -1,6 +1,5 @@
 ---
-layout: single
-classes: wide
+layout: default
 ---
 {% assign semester_page = site.html_pages | where: "semester", page.semester | first %}
 {% capture semester_label %}{% include semester-label.html semester=page.semester pages=site.html_pages %}{% endcapture %}
@@ -11,56 +10,60 @@ classes: wide
   {% assign team_text = team_value %}
 {% endif %}
 
-{% if page.short_abstract %}
-  <p class="showcase-lead">{{ page.short_abstract }}</p>
-{% endif %}
-
-<div class="project-detail-grid">
-  <div class="project-detail-main">
-    {% if page.poster_image %}
-      <figure class="project-detail-poster">
-        <img src="{{ page.poster_image | relative_url }}" alt="Poster for {{ page.title }}">
-      </figure>
+<section class="page-intro project-hero">
+  <div class="project-hero__copy">
+    <p class="page-kicker">Student project</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.short_abstract %}
+      <p class="page-lead">{{ page.short_abstract }}</p>
     {% endif %}
-    {{ content }}
-  </div>
 
-  <aside class="project-detail-aside">
-    <section class="project-detail-panel">
-      <p class="semester-kicker">Project snapshot</p>
-      <dl class="project-meta-list">
-        <dt>Semester</dt>
-        <dd>
+    <div class="project-meta-grid">
+      <div class="project-meta-item">
+        <span class="project-meta-label">Semester</span>
+        <p>
           {% if semester_page %}
             <a href="{{ semester_page.url | relative_url }}">{{ semester_label | strip }}</a>
           {% else %}
             {{ semester_label | strip }}
           {% endif %}
-        </dd>
-
-        <dt>Team</dt>
-        <dd>{{ team_text }}</dd>
-
-        {% if page.tags %}
-          <dt>Tags</dt>
-          <dd>
-            <ul class="tag-list">
-              {% for tag in page.tags %}
-                <li>{{ tag }}</li>
-              {% endfor %}
-            </ul>
-          </dd>
-        {% endif %}
-      </dl>
-
-      <div class="project-card__links project-card__links--stacked">
-        {% if page.demo_url and page.demo_url != blank %}
-          <a class="btn btn--primary btn--block" href="{{ page.demo_url }}" target="_blank" rel="noopener">Open demo</a>
-        {% endif %}
-        {% if page.repo_url and page.repo_url != blank %}
-          <a class="btn btn--inverse btn--block" href="{{ page.repo_url }}" target="_blank" rel="noopener">Open repository</a>
-        {% endif %}
+        </p>
       </div>
-    </section>
-  </aside>
-</div>
+
+      <div class="project-meta-item">
+        <span class="project-meta-label">Team</span>
+        <p>{{ team_text }}</p>
+      </div>
+
+      {% if page.tags %}
+        <div class="project-meta-item project-meta-item--full">
+          <span class="project-meta-label">Tags</span>
+          <ul class="tag-list">
+            {% for tag in page.tags %}
+              <li>{{ tag }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="button-row">
+      {% if page.demo_url and page.demo_url != blank %}
+        <a class="slate-button" href="{{ page.demo_url }}" target="_blank" rel="noopener">Open demo</a>
+      {% endif %}
+      {% if page.repo_url and page.repo_url != blank %}
+        <a class="slate-button slate-button--secondary" href="{{ page.repo_url }}" target="_blank" rel="noopener">Open repository</a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if page.poster_image %}
+    <figure class="project-hero__poster">
+      <img src="{{ page.poster_image | relative_url }}" alt="Poster for {{ page.title }}">
+    </figure>
+  {% endif %}
+</section>
+
+<section class="doc-card project-content">
+  {{ content }}
+</section>
